@@ -15,3 +15,4 @@ if(isAfternoon){
 if(isEvening){
     div.textContent = "Good Evening"
 }
+localStorage.setItem("It's a secret to everybody." , 'What are you doing? Looking for secrets? Dont put your nose where it doesnt belong. Or you might learn something you DONT like... Hee hee hee.')
