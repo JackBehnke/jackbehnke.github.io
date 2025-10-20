@@ -51,3 +51,47 @@ setInterval(() => {
     currentImage++
     showImages()
 }, 5000)
+
+const todo =[
+    { "text": "Buy milk", "completed": false },
+    { "text": "Walk the dog", "completed": false },
+    { "text": "Do homework", "completed": false }
+]
+
+// Get the list from local storage
+
+
+
+
+
+
+
+
+// Create and add new list items to the DOM
+
+const todoList = document.querySelector('.todo-list')
+const input = document.querySelector('#new-todo')
+const button = document.querySelector('button')
+// Get the list from local storage
+const todos = JSON.parse(localStorage.getItem('todo-list')) || []
+
+const rendertodos = () => {
+    // Clear the li's before we recreate them
+    todoList.innerHTML = ''
+    todos.forEach(todo => {
+        const li = document.createElement('li')  
+        li.textContent = todo.text
+        li.classList.add('todo')
+        todoList.append(li)
+    })
+}
+button.addEventListener('click', () => {
+    const input = input.value
+    if(!input) return alert('ENTER A TODO TO CONTINUE')
+    // Add a new item to the list
+    todos.push({ text: input.value, completed: false })
+    // Save the list to local storage
+    localStorage.setItem('todo-list', JSON.stringify(todos))
+    input = ''
+    rendertodos()
+})
