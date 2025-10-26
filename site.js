@@ -95,3 +95,27 @@ button.addEventListener('click', () => {
     input = ''
     rendertodos()
 })
+
+const pokemon = document.querySelector('.pokemon-div')
+
+const getRandomPokemon = async () => {
+    const url = 'https://pokeapi.co/api/v2/pokemon/' + Math.floor(Math.random() * 150)
+
+        const response = await fetch(url)
+        const pokemonimg = await response.json()
+        return pokemonimg
+}
+
+const renderPokemon = (pokemonimg) => {
+
+    const img = document.createElement('img')
+    img.src = pokemonimg.sprites.front_default
+    img.alt = pokemonimg.name
+    pokemon.append(img)
+    return pokemonimg
+}
+
+getRandomPokemon().then(pokemon => {
+    if (pokemon) renderPokemon(pokemon)
+})
+loadPokemon()
